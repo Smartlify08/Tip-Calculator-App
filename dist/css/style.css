@@ -1,0 +1,275 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Declare colors styling */
+:root {
+  --Verydarkcyan: hsl(183, 100%, 15%);
+  --Darkgrayishcyan: hsl(186, 14%, 43%);
+  --Grayishcyan: hsl(184, 14%, 56%);
+  --Lightgrayishcyan: hsl(185, 41%, 84%);
+  --Verylightgrayishcyan: hsl(189, 41%, 97%);
+  --White: hsl(0, 0%, 100%);
+  --Strongcyan: hsl(172, 67%, 45%);
+  --font: "Space Mono", monospace;
+}
+
+body {
+  line-height: 1.5;
+  font-size: 16px;
+  background-color: #fff;
+  font-family: var(--font);
+  background-color: var(--Lightgrayishcyan);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+h1 {
+  font-size: 25px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--Darkgrayishcyan);
+  margin-bottom: 40px;
+  width: 10%;
+}
+
+main {
+}
+
+.error-msg {
+  color: red;
+  font-size: 11px;
+}
+
+.card {
+  background-color: var(--White);
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  width: 900px;
+}
+
+.card .input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 50%;
+}
+
+.input-section label {
+  color: var(--Darkgrayishcyan);
+  font-size: 14px;
+}
+
+.input-section input {
+  padding: 15px 5px;
+  background-color: var(--Verylightgrayishcyan);
+  border: none;
+  display: block;
+  width: 95%;
+  margin-top: 5px;
+  border-radius: 10px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-section h3 {
+  color: var(--Darkgrayishcyan);
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.tip-percentage-section .tip-percentages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.tip-percentages button {
+  background-color: var(--Verydarkcyan);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 24px;
+  padding: 7px 10px;
+  font-family: var(--font);
+  width: 120px;
+  color: var(--White);
+}
+
+.tip-percentages input {
+  width: inherit;
+  width: 120px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-top: 0;
+}
+
+.tip-percentages input:focus {
+  border: 1.5px solid;
+}
+
+.tip-percentages input::placeholder {
+  font-size: 24px;
+  text-align: center;
+  color: var(--Darkgrayishcyan);
+  font-weight: 700;
+  font-family: var(--font);
+}
+
+/* Output section */
+.output-section {
+  background-color: var(--Verydarkcyan);
+  padding: 30px 25px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 50%;
+  border-radius: 20px;
+}
+
+.output-section .tip-person-box,
+.output-section .total-person-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.output-section .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.output-section h3 {
+  color: var(--White);
+  font-size: 16px;
+}
+
+.output-section p {
+  color: var(--Darkgrayishcyan);
+  font-size: 14px;
+}
+
+.output-section .tip-person,
+.output-section .total-person {
+  color: var(--Strongcyan);
+  font-size: 50px;
+}
+
+.output-section .btn {
+  width: 100%;
+  padding: 10px 35px;
+  font-size: 22px;
+  font-weight: 700;
+  font-family: var(--font);
+  text-transform: uppercase;
+  text-align: center;
+  background-color: var(--Strongcyan);
+  border: none;
+  border-radius: 5px;
+  color: var(--Verydarkcyan);
+  opacity: 0.2;
+}
+
+@media (width > 0px) and (width < 768px) {
+  body {
+    height: unset;
+    align-items: stretch;
+  }
+  h1 {
+    text-align: center;
+    width: 100%;
+    margin-top: 40px;
+  }
+  .card {
+    padding: 30px 30px;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0%;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+  }
+  .card .input-section {
+    width: 100%;
+  }
+
+  .tip-percentage-section .tip-percentages {
+    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tip-percentages .tip-percentage {
+    width: 150px;
+  }
+
+  .tip-percentages input {
+    width: 150px;
+  }
+  .output-section {
+    margin-top: 30px;
+    width: 350px;
+  }
+
+  .output-section .tip-person,
+  .output-section .total-person {
+    font-size: 32px;
+  }
+
+  .output-section .wrapper {
+    margin-bottom: 40px;
+  }
+
+  .output-section h3 {
+    color: var(--White);
+    font-size: 14px;
+  }
+}
+
+@media (width > 767px) and (width < 970px) {
+  .card {
+    width: 750px;
+  }
+  .tip-percentages .tip-percentage {
+    width: 100px;
+    font-size: 22px;
+  }
+  .tip-percentages input {
+    width: 100px;
+  }
+  .tip-percentages input::placeholder {
+    font-size: 22px;
+  }
+}
+
+.btn-light-up {
+  background-color: var(--Strongcyan);
+  width: 100%;
+  padding: 10px 35px;
+  font-size: 22px;
+  font-weight: 700;
+  font-family: var(--font);
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+}
