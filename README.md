@@ -48,4 +48,4 @@ Users should be able to:
 
 - Website - [Obinna Anosike](https://superb-pony-63b1e3.netlify.app/)
 - Frontend Mentor - [@Smartlify08](https://www.frontendmentor.io/profile/Smartlify08)
-- Twitter - [@yourusername](https://www.twitter.com/smartlify09)
+- Twitter - [@smartlify09](https://www.twitter.com/smartlify09)
