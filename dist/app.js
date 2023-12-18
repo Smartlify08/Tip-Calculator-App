@@ -30,7 +30,6 @@ class Calculate {
   tipAmountPerPerson() {
     const tipPerPerson = (this.#totalTip / this.people).toFixed(2);
 
-    console.log(tipPerPerson);
     return tipPerPerson;
   }
 
@@ -58,7 +57,7 @@ class UI {
     text.className = "error-msg";
     text.textContent = message;
     element.previousElementSibling.appendChild(text);
-    element.style.border = "1.5px solid red";
+    element.style.border = "2px solid #ff5d5b";
     element.previousElementSibling.childNodes.forEach((child, index) => {
       if (index > 3) {
         child.remove();
@@ -81,6 +80,14 @@ class UI {
     bill_input.style.border = "none";
     people_input.style.border = "none";
     resetBtn.className = "btn";
+
+    percentages.forEach((percentage_, index) => {
+      if (index === 5) {
+        percentage_.value = "";
+      } else {
+        percentage_.style.backgroundColor = "";
+      }
+    });
   }
 
   static buttonChangeBg(currentBtn) {
@@ -93,23 +100,17 @@ class UI {
 //inputs event Listener
 bill_input.addEventListener("input", (e) => {
   if (bill_input.value === "") {
-    console.log("Empty input");
     resetBtn.className = "btn";
   } else {
     resetBtn.className = "btn-light-up";
-    console.log(resetBtn.className);
-    console.log(e.target.value);
   }
 });
 
 people_input.addEventListener("input", (e) => {
   if (people_input.value === "") {
-    console.log("Empty input");
     resetBtn.className = "btn";
   } else {
     resetBtn.className = "btn-light-up";
-    console.log(resetBtn.className);
-    console.log(e.target.value);
   }
 });
 
@@ -117,37 +118,61 @@ people_input.addEventListener("input", (e) => {
 
 const percentage = percentages
   .map((percentage_) => percentage_)
-  .forEach((percentage_) => {
-    percentage_.addEventListener("click", (e) => {
-      // Show result into the output
+  .forEach((percentage_, index) => {
+    if (index !== 5) {
+      percentage_.addEventListener("click", (e) => {
+        percentages.forEach((percentage_) => {
+          percentage_.style.backgroundColor = "";
+        });
+        const currentBtn = percentage_;
+        if (index !== 5) {
+          currentBtn.style.backgroundColor = "hsl(172, 67%, 45%)";
+        }
+        const calc = new Calculate(
+          bill_input.value,
+          people_input.value,
+          percentage_.textContent
+        );
 
-      percentages.forEach((percentage_) => {
-        percentage_.style.backgroundColor = "";
+        if (bill_input.value === "" || people_input.value === "") {
+          UI.showError("Can't be zero", bill_input);
+          UI.showError("Can't be zero", people_input);
+          // Prevent error message from displaying more than once if button is clicked more than once
+        } else {
+          tipPerPerson.innerHTML = `$${calc.tipAmountPerPerson()}`;
+          totalPerPerson.innerHTML = `$${calc.totalAmountPerPerson()}`;
+        }
       });
-      const currentBtn = percentage_;
+    }
 
-      currentBtn.style.backgroundColor = "red";
-      const calc = new Calculate(
-        bill_input.value,
-        people_input.value,
-        percentage_.textContent
-      );
+    if (index === 5) {
+      percentage_.addEventListener("input", (e) => {
+        // Instance of Calculate Class
+        const calc = new Calculate(
+          bill_input.value,
+          people_input.value,
+          e.target.value
+        );
 
-      if (bill_input.value === "" || people_input.value === "") {
-        UI.showError("Can't be zero", bill_input);
-        UI.showError("Can't be zero", people_input);
-        console.log(bill_input.previousElementSibling);
-        // Prevent error message from displaying more than once if button is clicked more than once
-      } else {
-        tipPerPerson.innerHTML = `$${calc.tipAmountPerPerson()}`;
-        totalPerPerson.innerHTML = `$${calc.totalAmountPerPerson()}`;
-      }
-    });
+        if (bill_input.value === "" || people_input.value === "") {
+          UI.showError("Can't be zero", bill_input);
+          UI.showError("Can't be zero", people_input);
+          // Prevent error message from displaying more than once if button is clicked more than once
+        } else if (e.target.value === "") {
+          totalPerPerson.innerHTML = `$0.00`;
+          tipPerPerson.innerHTML = `$0.00`;
+        } else {
+          tipPerPerson.innerHTML = `$${calc.tipAmountPerPerson()}`;
+          totalPerPerson.innerHTML = `$${calc.totalAmountPerPerson()}`;
+        }
+      });
+    }
   });
+
+// Custom Input
 
 // Reset Btn functionality
 
 resetBtn.addEventListener("click", () => {
   UI.resetApp();
 });
-console.log(bill_input.parentElement.childNodes);
