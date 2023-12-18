@@ -56,7 +56,8 @@ class UI {
     const text = document.createElement("p");
     text.className = "error-msg";
     text.textContent = message;
-    element.previousElementSibling.appendChild(text);
+    console.log(element.parentElement.previousElementSibling);
+    element.parentElement.previousElementSibling.appendChild(text);
     element.style.border = "2px solid #ff5d5b";
     element.previousElementSibling.childNodes.forEach((child, index) => {
       if (index > 3) {
